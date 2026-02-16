@@ -108,3 +108,10 @@
 # if __name__ == "__main__":
 #     good_foo()
 
+
+def my_sum(numbers):
+    total = 0
+    for num in numbers:
+        total += num
+    return total
+
