@@ -80,3 +80,10 @@ def main():
 
 if __name__ == "__main__":
     main()
+
+def read_file(filename):
+    with open(filename, "r", encoding="utf-8") as file:
+        return file.read()
+
+content = read_file("test.txt")
+print(content)
