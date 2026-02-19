@@ -87,3 +87,33 @@ def read_file(filename):
 
 content = read_file("test.txt")
 print(content)
+
+from datetime import datetime
+import pytz
+
+# Часовые пояса
+moscow_tz = pytz.timezone("Europe/Moscow")
+turkey_tz = pytz.timezone("Europe/Istanbul")
+london_tz = pytz.timezone("Europe/London")
+
+# Ввод времени
+user_time = input("Введите время (формат ЧЧ:ММ): ")
+
+# Преобразуем строку во время (сегодняшняя дата)
+now = datetime.now()
+dt = datetime.strptime(user_time, "%H:%M")
+dt = dt.replace(year=now.year, month=now.month, day=now.day)
+
+# Предположим, что введённое время — локальное (UTC)
+utc = pytz.utc.localize(dt)
+
+# Конвертация
+moscow_time = utc.astimezone(moscow_tz)
+turkey_time = utc.astimezone(turkey_tz)
+london_time = utc.astimezone(london_tz)
+
+# Вывод
+print("\nВремя в разных странах:")
+print("Москва:", moscow_time.strftime("%H:%M"))
+print("Турция:", turkey_time.strftime("%H:%M"))
+print("Лондон:", london_time.strftime("%H:%M"))
